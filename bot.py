@@ -2,6 +2,9 @@ import os
 import feedparser
 import requests
 from flask import Flask
+import telegram 
+from telegram.ext import Updater
+CommandHandler
 
 app = Flask(__name__)
 
