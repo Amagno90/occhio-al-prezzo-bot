@@ -5,7 +5,7 @@ from flask import Flask
 app = Flask(__name__)
 
 # CONFIGURAZIONE
-BOT_TOKEN = os.getenv("BOT_TOKEN"))
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 CHANNEL_ID = '@occhioalprezzo'
 AFFILIATE_ID = 'occhioalpre08-21'
 RSS_FEED = 'https://www.amazon.it/gp/rss/bestsellers/electronics/'
