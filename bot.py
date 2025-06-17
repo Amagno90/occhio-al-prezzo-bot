@@ -7,3 +7,10 @@ CHANNEL_ID = "@OcchioalPrezzo"  # sostituisci con il tuo canale
 bot = Bot(token=BOT_TOKEN)
 
 bot.send_message(chat_id=CHANNEL_ID, text="✅ Il bot è collegato correttamente al canale.")
+
+from telegram.error import TelegramError
+
+try:
+    bot.send_message(chat_id=CHANNEL_ID, text="✅ Test di pubblicazione.")
+except TelegramError as e:
+    print(f"Errore Telegram: {e}")
