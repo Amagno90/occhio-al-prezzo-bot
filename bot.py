@@ -2,7 +2,7 @@ import os
 from telegram import Bot
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")  # già configurato
-CHANNEL_ID = "@@OcchioalPrezzoBot"  # sostituisci con il tuo canale
+CHANNEL_ID = "@@OcchioalPrezzo"  # sostituisci con il tuo canale
 
 bot = Bot(token=BOT_TOKEN)
 
