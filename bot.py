@@ -14,3 +14,9 @@ try:
     bot.send_message(chat_id=CHANNEL_ID, text="✅ Test di pubblicazione.")
 except TelegramError as e:
     print(f"Errore Telegram: {e}")
+
+import os
+
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+CHANNEL_ID = os.getenv("CHANNEL_ID")  # Se previsto
+
