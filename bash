@@ -4,3 +4,4 @@ git push origin main
 /project-root
 ├── bot.py
 ├── requirements.txt
+python bot.py
