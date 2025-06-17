@@ -1,41 +1,21 @@
 import os
-import feedparser
-import requests
-from flask import Flask
-import telegram 
-from telegram.ext import Updater
+import telegram
+from telegram.ext import Updater, CommandHandler
 
-app = Flask(__name__)
-
-# CONFIGURAZIONE
 BOT_TOKEN = os.getenv("BOT_TOKEN")
-CHANNEL_ID = '@occhioalprezzo'
-AFFILIATE_ID = 'occhioalpre08-21'
-RSS_FEED = 'https://www.amazon.it/gp/rss/bestsellers/electronics/'
 
-@app.route('/')
-def home():
-    return "Bot attivo"
+def start(update, context):
+    context.bot.send_message(chat_id=update.effective_chat.id, text="Ciao! Sono attivo.")
 
-@app.route('/esegui')
-def esegui():
-    feed = feedparser.parse(RSS_FEED)
-    messaggi_inviati = 0
+def main():
+    updater = Updater(token=BOT_TOKEN, use_context=True)
+    dispatcher = updater.dispatcher
 
-    for entry in feed.entries[:5]:
-        titolo = entry.title
-        link = entry.link + f"?tag={AFFILIATE_ID}"
-        messaggio = f"*{titolo}*\n{link}"
+    start_handler = CommandHandler('start', start)
+    dispatcher.add_handler(start_handler)
 
-        url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-        payload = {
-            "chat_id": CHANNEL_ID,
-            "text": messaggio,
-            "parse_mode": "Markdown"
-        }
+    updater.start_polling()
+    updater.idle()
 
-        r = requests.post(url, data=payload)
-        if r.status_code == 200:
-            messaggi_inviati += 1
-
-    return f"✅ {messaggi_inviati} messaggi inviati."
+if __name__ == '__main__':
+    main()
